@@ -1,14 +1,23 @@
 :root{
-    --primary: #1ae8bf;
-    --secondary: #7b780b;
+    --primary: #00baf2;
+    --third: #002970;
+    --secondary: #FF6F61;
+    --background: #F4F4F4;
 }
 
+.bg{
+    background-color: var(--background) !important;
+}
 .bg-primary{
     background-color: var(--primary) !important;
 }
 
 .bg-secondary{
     background-color: var(--secondary) !important;
+}
+
+.bg-third{
+    background-color: var(--third) !important;
 }
 
 .text-primary{
@@ -24,4 +33,8 @@
 
 .text-black{
     color: black !important;
+}
+
+.text-none{
+    text-decoration: none !important;
 }

@@ -4,7 +4,23 @@
     height: 100vh;
 }
 
-.h50{
+.h-1{
+    height: 10px;
+}
+
+.h-2{
+    height: 20px;
+}
+
+.h-3{
+    height: 30px;
+}
+
+.h-5{
+    height: 50px;
+}
+
+.h-50{
     height: 50%;
 }
 
@@ -94,4 +110,9 @@
 }
 .p-3{
     padding: 30px;
+}
+
+
+.rounded{
+    border-radius: 10px 10px 10px 10px;
 }

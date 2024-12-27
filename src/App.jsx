@@ -6,14 +6,18 @@ import './stylesheets/text-elements.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Home from './pages/Home';
+import Nav from './components/Nav';
 function App() {
 
   return (
       <div>
+        <Nav />
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Register" element={<Register />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </BrowserRouter>
       </div>
@@ -21,4 +25,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

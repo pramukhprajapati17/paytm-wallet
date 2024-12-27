@@ -43,7 +43,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .primary-contained-btn{
-    background-color: var(--primary);
+    background-color: var(--third);
     color: white;
     padding: 8px 10px;
     text-transform: uppercase;
