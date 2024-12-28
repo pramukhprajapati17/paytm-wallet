@@ -12,7 +12,7 @@ const Home = () => {
             Track your expenses, send and receive payments, and achieve financial freedom with WalletApp.
           </p>
           <div className="flex gap-2 mt-2">
-            <a href="/login"><button className="bg-primary text-white p-1 rounded hover:bg-third">
+            <a href="/login"><button className="bg-primary text-white p-1 rounded bg-third">
               Get Started
             </button></a>
           </div>

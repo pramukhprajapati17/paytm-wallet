@@ -1,37 +1,54 @@
 import React from 'react';
-import { Col, Form, Row } from 'antd';
+import { Col, Form, Row, Input, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 function Login() {
   const navigate = useNavigate();
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+
+  const onFinish = async (values) => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/login', values);
+      message.success(response.data.message); // Success message from response
+      navigate('/Dashboard'); // Redirect on success
+    } catch (error) {
+      if (error.response && error.response.data) {
+        message.error(error.response.data.message || 'Invalid email or password!');
+      } else {
+        message.error('An error occurred. Please try again.');
+      }
+    }
   };
 
   return (
     <div className="bg flex items-center justify-center h-login">
       <div className="card w-400 p-2">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl">WALLET - LOGIN</h1>
-        </div>
+        <h1 className="text-2xl">WALLET - LOGIN</h1>
         <hr />
         <Form layout="vertical" onFinish={onFinish}>
           <Row gutter={16}>
-            <Col span={20}>
-              <Form.Item label="Email" name="email">
-                <input type="text" />
+            <Col span={24}>
+              <Form.Item
+                label="Email"
+                name="email"
+                rules={[{ required: true, message: 'Please input your email!' }]}
+              >
+                <Input type="email" />
               </Form.Item>
             </Col>
-            <Col span={20}>
-              <Form.Item label="Password" name="password">
-                <input type="password" />
+            <Col span={24}>
+              <Form.Item
+                label="Password"
+                name="password"
+                rules={[{ required: true, message: 'Please input your password!' }]}
+              >
+                <Input.Password />
               </Form.Item>
             </Col>
           </Row>
           <button className="primary-contained-btn w-30" type="submit">
             Login
           </button>
-          <h1 className="text-sm underline mt-2" 
-            onClick={()=>navigate("/register")}>Not a member, Click Here To Register</h1>
         </Form>
       </div>
     </div>
