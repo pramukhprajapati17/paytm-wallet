@@ -1,4 +1,6 @@
 import React from 'react';
+import Lottie from 'lottie-react';
+import LottieAnimation from '../../../public/lwallet.json';
 
 const Home = () => {
     return (
@@ -17,8 +19,8 @@ const Home = () => {
             </button></a>
           </div>
         </div>
-        <div className="w-50">
-            <img src="" alt="" />
+        <div className="w-50 flex justify-center items-center">
+            <Lottie animationData={LottieAnimation} className='w-50'/>
         </div>
       </main>
     );
