@@ -2,13 +2,19 @@ import React from 'react'
 
 const Nav = () => {
   return (
-    <div className="flex items-center bg h-5 p-2">
-        <a href="/" className='w-50 justify-center flex'><img src="" alt="Logo" /></a>
-        <div className='flex items-center justify-end w-50 p-2'>  
-          <a href="/Login" className='m-5 text-none text-black p-2'>Login</a>
-          <a href="/Register" className='bg-secondary text-none rounded text-white p-1'>Signup</a>
+    <header className="bg-primary text-white flex justify-between items-center p-2">
+        <a href="/" className="text-none"><strong className="text-white font-bold f-30">
+          Wallet<span className="text-secondary">App</span>
+        </strong></a>
+        <div className="flex gap-2">
+          <a href="/Login"><button className="bg-secondary text-white p-1 rounded hover:bg-third">
+            Log In
+          </button></a>
+          <a href="/Register"><button className="bg-secondary text-white p-1 rounded hover:bg-third">
+            Sign Up
+          </button></a>
         </div>
-    </div>
+      </header>
 
   )
 }

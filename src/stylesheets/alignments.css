@@ -4,6 +4,13 @@
     height: 100vh;
 }
 
+.h-login{
+    height: calc(100vh - 94px);
+}
+
+.h-home{
+    height: calc(100vh - 154px);
+}
 .h-1{
     height: 10px;
 }
@@ -24,6 +31,10 @@
     height: 50%;
 }
 
+.h-90{
+    height: 90%;
+}
+
 .w-screen{
     width: 100vw;
 }
@@ -34,6 +45,10 @@
 
 .w-50{
     width: 50%;
+}
+
+.w-30{
+    width: 30%;
 }
 
 .w-400{
@@ -80,6 +95,10 @@
 
 /* margins and paddings */
 
+.m-0{
+    margin: 0;
+}
+
 .m-1{
     margin: 10px;
 }
@@ -102,6 +121,10 @@
     margin: 50px;
 }
 
+.p-0{
+    padding: 0;
+}
+
 .p-1{
     padding: 10px;
 }
@@ -115,4 +138,31 @@
 
 .rounded{
     border-radius: 10px 10px 10px 10px;
+}
+
+
+/* font */
+
+.f-30{
+    font-size: 30px;
+}
+
+.f-20{
+    font-size: 20px;
+}
+
+.f-16{
+    font-size: 16px;
+}
+
+.f-100{
+    font-size: 100px;
+}
+
+.f-50{
+    font-size: 50px;
+}
+
+.f-70{
+    font-size: 70px;
 }
