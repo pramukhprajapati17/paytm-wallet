@@ -5,9 +5,7 @@ const bodyParser = require('body-parser');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
-const authRoutes = require('./routes/auth.js');  // Importing routes
 
-app.use('/api', authRoutes);
 
 dotenv.config();  // Load environment variables from .env file
 
