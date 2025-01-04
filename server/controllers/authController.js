@@ -19,11 +19,22 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
+    // Fetch user data
+    const userData = {
+      f_name: user.f_name,
+      l_name: user.l_name,
+      unique_id: user.unique_id,
+      email: user.email,
+      address: user.address,
+      mobile: user.mobile,
+      balance: user.balance,
+    };
+
     // Generate JWT Token
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    // Send response with token
-    res.status(200).json({ message: 'Login successful', token });
+    // Send response with token and user data
+    res.status(200).json({ message: 'Login successful', token, user: userData });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });

@@ -10,6 +10,10 @@ function Login() {
     try {
       const response = await axios.post('http://localhost:5000/api/login', values);
       message.success(response.data.message); // Success message from response
+
+      // Store user data in local storage
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+
       navigate('/Dashboard'); // Redirect on success
     } catch (error) {
       if (error.response && error.response.data) {
