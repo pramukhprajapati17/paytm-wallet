@@ -30,16 +30,37 @@ function Dashboard() {
 
   const handleTransactionSubmit = (e) => {
     e.preventDefault();
+    const transactionAmount = parseFloat(amount);
+    if (transactionAmount <= 0) {
+      alert('Amount must be greater than zero');
+      return;
+    }
+    if (transactionAmount > user.balance) {
+      alert('Insufficient balance');
+      return;
+    }
     const newTransaction = {
-      date: new Date().toISOString().split('T')[0],
+      date: new Date().toISOString().split('T')[0] + ' ' + new Date().toLocaleTimeString(),
       sender: `${user.unique_id}`,
       recipient,
-      amount: parseFloat(amount),
+      amount: transactionAmount,
       type: 'Debit'
     };
     const updatedTransactions = [...transactions, newTransaction];
     setTransactions(updatedTransactions);
     localStorage.setItem('transactions', JSON.stringify(updatedTransactions));
+
+    // Update balance
+    let updatedUser = { ...user };
+    if (newTransaction.sender === user.unique_id) {
+      updatedUser.balance -= newTransaction.amount;
+    }
+    if (newTransaction.recipient === user.unique_id) {
+      updatedUser.balance += newTransaction.amount;
+    }
+    setUser(updatedUser);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+
     setRecipient('');
     setAmount('');
   };
@@ -66,31 +87,31 @@ function Dashboard() {
         {/* User Details */}
         <div className="bg-white rounded p-3 shadow">
           <h2 className="text-third f-20">User Details</h2>
-          <table className="w-100">
+          <table className="w-100 border border-gray-300">
             <tbody>
               <tr>
-                <td style={{ width: '150px' }}><b>Name:</b></td>
-                <td>{user.f_name} {user.l_name}</td>
+                <td style={{ width: '150px', padding: '1px' }}><b>Name:</b></td>
+                <td style={{ padding: '1px' }}>{user.f_name} {user.l_name}</td>
               </tr>
               <tr>
-                <td style={{ width: '150px' }}><b>ID:</b></td>
-                <td>{user.unique_id}</td>
+                <td style={{ width: '150px', padding: '1px' }}><b>ID:</b></td>
+                <td style={{ padding: '1px' }}>{user.unique_id}</td>
               </tr>
               <tr>
-                <td style={{ width: '150px' }}><b>Email:</b></td>
-                <td>{user.email}</td>
+                <td style={{ width: '150px', padding: '1px' }}><b>Email:</b></td>
+                <td style={{ padding: '1px' }}>{user.email}</td>
               </tr>
               <tr>
-                <td style={{ width: '150px' }}><b>Address:</b></td>
-                <td>{user.address}</td>
+                <td style={{ width: '150px', padding: '1px' }}><b>Address:</b></td>
+                <td style={{ padding: '1px' }}>{user.address}</td>
               </tr>
               <tr>
-                <td style={{ width: '150px' }}><b>Mobile:</b></td>
-                <td>{user.mobile}</td>
+                <td style={{ width: '150px', padding: '1px' }}><b>Mobile:</b></td>
+                <td style={{ padding: '1px' }}>{user.mobile}</td>
               </tr>
               <tr>
-                <td style={{ width: '150px' }}><b>Balance:</b></td>
-                <td>${user.balance}</td>
+                <td style={{ width: '150px', padding: '1px' }}><b>Balance:</b></td>
+                <td style={{ padding: '1px' }}>${user.balance}</td>
               </tr>
             </tbody>
           </table>
@@ -125,30 +146,40 @@ function Dashboard() {
         </div>
 
         {/* Transaction History and Overview */}
-        <div className="flex gap-2 w-400 mt-3">
+        <div className="flex justify-center w-full mt-3">
           {/* Transaction History */}
-          <div className="w-50 bg-white rounded p-3 shadow">
+          <div className="w-full bg-white rounded p-3 shadow">
             <h2 className="text-third f-20">Transaction History</h2>
-            <table className="w-100">
+            <table className="w-full border border-gray-300">
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Sender</th>
-                  <th>Recipient</th>
-                  <th>Amount</th>
-                  <th>Type</th>
+                  <th className="border border-gray-300" style={{ padding: '1px' }}>Date</th>
+                  <th className="border border-gray-300" style={{ padding: '1px' }}>Sender</th>
+                  <th className="border border-gray-300" style={{ padding: '1px' }}>Recipient</th>
+                  <th className="border border-gray-300" style={{ padding: '1px' }}>Amount</th>
+                  <th className="border border-gray-300" style={{ padding: '1px' }}>Type</th>
                 </tr>
               </thead>
               <tbody>
-                {transactions.map((transaction, index) => (
-                  <tr key={index}>
-                    <td>{transaction.date}</td>
-                    <td>{transaction.sender}</td>
-                    <td>{transaction.recipient}</td>
-                    <td>${transaction.amount}</td>
-                    <td>{transaction.type}</td>
-                  </tr>
-                ))}
+                {transactions
+                  .filter(transaction => transaction.sender === user.unique_id || transaction.recipient === user.unique_id)
+                  .map((transaction, index) => {
+                    if (transaction.recipient === user.unique_id) {
+                      user.balance += transaction.amount;
+                    }
+                    if (transaction.sender === user.unique_id) {
+                      user.balance -= transaction.amount;
+                    }
+                    return (
+                      <tr key={index}>
+                        <td className="border border-gray-300" style={{ padding: '5px', border: '2px solid' }}>{transaction.date}</td>
+                        <td className="border border-gray-300" style={{ padding: '5px', border: '2px solid' }}>{transaction.sender}</td>
+                        <td className="border border-gray-300" style={{ padding: '5px', border: '2px solid' }}>{transaction.recipient}</td>
+                        <td className="border border-gray-300" style={{ padding: '5px', border: '2px solid' }}>${transaction.amount}</td>
+                        <td className="border border-gray-300" style={{ padding: '5px', border: '2px solid' }}>{transaction.type}</td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
           </div>
