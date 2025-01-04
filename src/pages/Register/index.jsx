@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Form, Input, Select, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import Nav from '../../components/Nav';
 function Register() {
   const navigate = useNavigate();
 
@@ -47,6 +47,8 @@ function Register() {
   };
 
   return (
+    <div>
+      <Nav />
     <div className='m-5'>
       <div className="flex items-center justify-between">
         <h1 className="text-2xl">WALLET - REGISTER</h1>
@@ -158,6 +160,7 @@ function Register() {
           <button className='primary-contained-btn' type='submit'>Register</button>
         </div>
       </Form>
+    </div>
     </div>
   );
 }

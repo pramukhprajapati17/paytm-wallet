@@ -17,11 +17,29 @@ function Dashboard() {
     }
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
+
   if (!user) {
     return <div>Loading...</div>;
   }
 
   return (
+    <div>
+      <header className="bg-primary text-white flex justify-between items-center p-2">
+      <a href="/" className="text-none">
+        <strong className="text-white font-bold f-30">
+          Wallet<span className="text-secondary">App</span>
+        </strong>
+      </a>
+      <div className="flex gap-2">
+        <button onClick={handleLogout} className="bg-secondary text-white p-1 rounded hover:bg-third">
+          Log Out
+        </button>
+      </div>
+    </header>
     <div className="bg h-screen flex flex-col items-center p-3">
       {/* User Details */}
       <div className=" bg-white rounded p-3 shadow">
@@ -117,6 +135,7 @@ function Dashboard() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

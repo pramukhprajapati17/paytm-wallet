@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
-import Nav from './components/Nav';
 import React from 'react';
 import Dashboard from './pages/Dashboard';
 
@@ -15,7 +14,6 @@ function App() {
 
   return (
       <div>
-        <Nav />
         <BrowserRouter>
           <Routes>
             <Route path="/Login" element={<Login />} />

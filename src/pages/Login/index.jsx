@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Form, Row, Input, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Nav from '../../components/Nav';
 
 function Login() {
   const navigate = useNavigate();
@@ -25,6 +26,8 @@ function Login() {
   };
 
   return (
+    <div>
+      <Nav />
     <div className="bg flex items-center justify-center h-login">
       <div className="card w-400 p-2">
         <h1 className="text-2xl">WALLET - LOGIN</h1>
@@ -55,6 +58,7 @@ function Login() {
           </button>
         </Form>
       </div>
+    </div>
     </div>
   );
 }

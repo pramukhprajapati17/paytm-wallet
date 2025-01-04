@@ -1,9 +1,11 @@
 import React from 'react';
 import Lottie from 'lottie-react';
 import LottieAnimation from '../../../public/lwallet.json';
+import Nav from '../../components/Nav';
 
 const Home = () => {
     return (
+      <div><Nav />
         <main className="flex justify-between items-center p-3 h-home">
         <div className="w-50">
           <h1 className="text-third f-70">
@@ -23,6 +25,7 @@ const Home = () => {
             <Lottie animationData={LottieAnimation} className='w-50'/>
         </div>
       </main>
+      </div>
     );
 };
 
