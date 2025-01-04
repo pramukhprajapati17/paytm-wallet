@@ -88,10 +88,6 @@ function Dashboard() {
             placeholder="Amount"
             className="p-1 rounded border border-gray"
           />
-          <select className="p-1 rounded border border-gray">
-            <option value="Credit">Credit</option>
-            <option value="Debit">Debit</option>
-          </select>
           <button className="bg-primary text-white p-1 rounded">Submit</button>
         </form>
       </div>
