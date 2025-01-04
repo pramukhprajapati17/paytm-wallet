@@ -32,7 +32,7 @@ function Dashboard() {
     e.preventDefault();
     const newTransaction = {
       date: new Date().toISOString().split('T')[0],
-      sender: `${user.f_name} ${user.l_name}`,
+      sender: `${user.unique_id}`,
       recipient,
       amount: parseFloat(amount),
       type: 'Debit'
